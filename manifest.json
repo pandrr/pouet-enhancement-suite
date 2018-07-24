@@ -1,7 +1,7 @@
 {
 "manifest_version": 2,
-"name": "fix pouet",
-"description": "fixes pouet.net",
+"name": "pouet enhancement suite",
+"description": "enhances pouet.net",
 "version": "0.1",
 "content_scripts": [
  {

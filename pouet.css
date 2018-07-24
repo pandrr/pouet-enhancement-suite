@@ -10,3 +10,12 @@ background:#f00 !important;
 	height:auto;
 }
 
+.multiscreenshot
+{
+	cursor:e-resize;
+}
+
+.loading
+{
+	cursor:wait;
+}

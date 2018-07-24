@@ -12,16 +12,25 @@ function getDemoZooData(id)
 				var el=document.querySelector("#screenshot img");
 				var screenIndex=0;
 				
+				el.classList.add('loading');
+
 				el.src=data.screenshots[0].original_url;
 				el.onload=function()
 				{
 					el.classList.add('fixed');
+					el.classList.remove('loading');
+
+					if(data.screenshots.length>0)
+						el.classList.add('multiscreenshot');
 				}
+
 
 				el.onclick=function()
 				{
 					screenIndex=(++screenIndex)%data.screenshots.length;
+					el.classList.add('loading');
 					el.src=data.screenshots[screenIndex].original_url;
+
 				}
 			}
 		});
