@@ -20,17 +20,15 @@ function getDemoZooData(id)
 					el.classList.add('fixed');
 					el.classList.remove('loading');
 
-					if(data.screenshots.length>0)
+					if(data.screenshots.length>1)
 						el.classList.add('multiscreenshot');
 				}
-
 
 				el.onclick=function()
 				{
 					screenIndex=(++screenIndex)%data.screenshots.length;
 					el.classList.add('loading');
 					el.src=data.screenshots[screenIndex].original_url;
-
 				}
 			}
 		});
@@ -42,12 +40,7 @@ function getDemoZooData(id)
 var elDemoZooId=document.querySelector('#demozooID a');
 if(elDemoZooId)
 {
-	console.log(elDemoZooId);
-	console.log(elDemoZooId.href);
-
 	var parts=elDemoZooId.href.split('/');
-
-	console.log(parts);
 	getDemoZooData(parts[parts.length-2]);
 }
 else
