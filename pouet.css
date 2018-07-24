@@ -1,0 +1,12 @@
+
+/*body
+{
+background:#f00 !important;
+}*/
+
+#screenshot img.fixed
+{
+	width:640px;
+	height:auto;
+}
+
