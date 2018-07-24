@@ -19,3 +19,8 @@ background:#f00 !important;
 {
 	cursor:wait;
 }
+
+.platform1,.typei,.platformiconlist,.platform,.type
+{
+	image-rendering: pixelated;	
+}
