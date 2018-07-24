@@ -1,5 +1,3 @@
-console.log("hack the planet");
-
 
 function getDemoZooData(id)
 {
@@ -22,16 +20,9 @@ function getDemoZooData(id)
 
 				el.onclick=function()
 				{
-					
-					console.log('num screens',data.screenshots.length);
 					screenIndex=(++screenIndex)%data.screenshots.length;
-
-					console.log(screenIndex);
-
 					el.src=data.screenshots[screenIndex].original_url;
-					
 				}
-
 			}
 		});
 	});	
@@ -52,6 +43,6 @@ if(elDemoZooId)
 }
 else
 {
-	console.log('gelitten');
+	console.log('could not find demozone id');
 }
 
