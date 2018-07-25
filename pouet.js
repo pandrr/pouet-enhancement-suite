@@ -1,10 +1,22 @@
 
 function getDemoZooData(id)
 {
-	fetch('//demozoo.org/api/v1/productions/'+id).then(function(response)
-	{
-		response.json().then(function(data)
-		{
+	console.log("fetching...");
+	fetch('https://demozoo.org/api/v1/productions/'+id)
+
+		.then(function(response) { console.log('fetchhhhh');return response.json(); })
+	    .then(function(data) {
+
+	// .then(
+	// 	function(response)
+	// {
+
+	// 	response.json().then(
+	// 		function(data)
+		// {
+
+			console.log("got response...");
+
 	        console.log(data);
 
 			if(data.screenshots && data.screenshots.length>0)
@@ -31,8 +43,12 @@ function getDemoZooData(id)
 					el.src=data.screenshots[screenIndex].original_url;
 				}
 			}
-		});
-	});	
+		})
+
+		.catch(function(e) {
+        console.log("error",e);
+    	});;
+	// });	
 }
 
 

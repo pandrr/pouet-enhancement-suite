@@ -1,15 +1,14 @@
 {
-"manifest_version": 2,
-"name": "pouet enhancement suite",
-"description": "enhances pouet.net",
-"version": "0.1",
-"content_scripts": [
- {
- "matches": ["https://www.pouet.net/*","http://www.pouet.net/*"],
- "css": ["pouet.css"],
- "js": ["pouet.js"]
- }]
-
-
+	"manifest_version": 2,
+	"name": "pouet enhancement suite",
+	"description": "enhances pouet.net",
+	"version": "0.1",
+    "permissions": [ "https://demozoo.org/" ],
+	"content_scripts": [
+	 {
+	   "matches": ["https://www.pouet.net/*","http://www.pouet.net/*"],
+	   "css": ["pouet.css"],
+	   "js": ["pouet.js"]
+	 }]
 }
 
