@@ -1,23 +1,10 @@
 
 function getDemoZooData(id)
 {
-	console.log("fetching...");
 	fetch('https://demozoo.org/api/v1/productions/'+id)
 
-		.then(function(response) { console.log('fetchhhhh');return response.json(); })
+		.then(function(response) { return response.json(); })
 	    .then(function(data) {
-
-	// .then(
-	// 	function(response)
-	// {
-
-	// 	response.json().then(
-	// 		function(data)
-		// {
-
-			console.log("got response...");
-
-	        console.log(data);
 
 			if(data.screenshots && data.screenshots.length>0)
 			{
@@ -43,12 +30,15 @@ function getDemoZooData(id)
 					el.src=data.screenshots[screenIndex].original_url;
 				}
 			}
+			else
+			{
+				console.log('no demozoo screenshots');
+			}
 		})
 
 		.catch(function(e) {
-        console.log("error",e);
-    	});;
-	// });	
+       		console.log("fetch error",e);
+    	});
 }
 
 
@@ -61,6 +51,6 @@ if(elDemoZooId)
 }
 else
 {
-	console.log('could not find demozone id');
+	console.log('could not find demozoo id');
 }
 
