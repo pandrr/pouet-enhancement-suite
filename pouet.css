@@ -138,23 +138,3 @@
 }
 
 
-
-@-webkit-keyframes pulse {
-    0% {  opacity: 0.27; }
-    50% { opacity: 1; }
-    100% {  opacity: 0.27; }
-}
-
-@keyframes pulse {
-    0% { opacity: 0.27; }
-    50% { opacity: 1; }
-    100% { opacity: 0.27; }
-}
-
-.loading {
-    -webkit-animation: pulse 0.1s infinite ease-in-out;
-    -o-animation: pulse 0.1s infinite ease-in-out;
-    -ms-animation: pulse 0.1s infinite ease-in-out; 
-    -moz-animation: pulse 0.1s infinite ease-in-out; 
-    animation: pulse 0.1s infinite ease-in-out;
-}
