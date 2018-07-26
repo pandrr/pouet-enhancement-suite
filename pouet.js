@@ -10,9 +10,6 @@ loadSettings(function()
 		startDemoZoo();
 	});
 
-// const MAX_SCREENSHOT_WIDTH=640;
-
-
 //
 // initialize screenshot gallery and start loading the first image
 //
@@ -159,7 +156,6 @@ function startDemoZoo()
 	{
 		console.log('could not find demozoo id');
 	}
-
 }
 
 
@@ -175,7 +171,9 @@ function startDemoZoo()
 
 
 
-
+//
+// settings
+//
 
 function closeSettings()
 {
@@ -186,10 +184,7 @@ function closeSettings()
 function openSettings()
 {
 	console.log(pesSettings);
-	if(document.getElementById("pes-settingspanel"))
-	{
-		return;
-	}
+	if(document.getElementById("pes-settingspanel")) return;
 
 	var settingsPanel = document.createElement("div");
 	settingsPanel.classList.add('settingspanel');
@@ -199,15 +194,13 @@ function openSettings()
 		'<br/><br/>'+
 		'<input id="pes-savesettingspanel" type="button" class="pes-button" value="save"/>'+
 		'<input id="pes-closesettingspanel" type="button" class="pes-button" value="close"/>'+
-		'<br/><br/>pouet enhancement suite uses <a href="https://demozoo.org/">demozoo.org</a> as source. please support them, they are doing amazing work!';
+		'<br/><br/><a href="https://github.com/pandrr/pouet-enhancement-suite">pouet enhancement suite</a> uses <a href="https://demozoo.org/">demozoo.org</a> as source. please support them, they are doing amazing work!';
 
 	document.body.appendChild(settingsPanel);
 	document.getElementById("pes-closesettingspanel").onclick=closeSettings;
 	document.getElementById("pes-savesettingspanel").onclick=saveSettings;
 	document.getElementById("setting_max_screenshot_width").value=pesSettings.max_screenshot_width;
 }
-
-
 
 function initSettings()
 {
@@ -218,22 +211,13 @@ function initSettings()
 	document.body.appendChild(settingsButton);
 }
 
-
-
 function saveSettings()
 {
 	for(var i in pesSettings)
 	{
 		var settingEle=document.getElementById("setting_"+i);
-		console.log(i);
-		if(settingEle)
-		{
-			console.log(settingEle.value);
-			pesSettings[i]=settingEle.value;
-		}
+		if(settingEle) pesSettings[i]=settingEle.value;
 	}
-
-	console.log(pesSettings);
 
 	chrome.storage.local.set(pesSettings,
 		function(r)
@@ -245,13 +229,11 @@ function saveSettings()
 function loadSettings(next)
 {
 	var keys=[];
-	for(var i in pesSettings)keys.push(i);
+	for(var i in pesSettings) keys.push(i);
 
-	chrome.storage.local.get(keys, 
+	chrome.storage.local.get(keys,
 		function(result)
 		{
-			console.log(result);
-
 			if(result.max_screenshot_width)
 			{
 				pesSettings=result;
@@ -263,7 +245,6 @@ function loadSettings(next)
 			}
 
 			if(next)next();
-
 		});
 }
 
