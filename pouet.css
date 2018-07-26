@@ -31,23 +31,22 @@
 #screenshot.gallery .indicator {
 	position: absolute;
 	bottom: 0;
-	left: 50%;
-	transform: translateX(-50%);
-	background: rgba(0,0,0,.5);
-	padding: .5em;
+	width: 100%;
+	padding: .5em 0;
 	padding-bottom: 0;
 	opacity: 0;
 }
 #screenshot.gallery .indicator a {
 	background: #666;
-    border-radius: 100%;
-    width: 5px;
-    height: 5px;
-    margin: .2em;
-    display: inline-block;
+	border-radius: 100%;
+	width: 5px;
+	height: 5px;
+	margin: .2em;
+	display: inline-block;
+	pointer-events: none;
 }
 #screenshot.gallery .indicator a.active {
-	background: #ccc;
+	background: #6688AA;
 }
 
 
