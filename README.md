@@ -11,4 +11,4 @@ firefox:
 https://addons.mozilla.org/en-GB/firefox/addon/pouet-enhancement-suite/
 
 chrome:
-https://chrome.google.com/webstore/detail/pouet-enhancement-suite/hmbklagmjmigcm pjabgjilamdecjmidh
+https://chrome.google.com/webstore/detail/pouet-enhancement-suite/hmbklagmjmigcmpjabgjilamdecjmidh
