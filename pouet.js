@@ -39,10 +39,10 @@ function initScreenShotGallery(data)
 	gallery.classList.add('gallery');
 	var prev = document.createElement('span');
 	prev.classList.add('prev');
-	prev.innerHTML = "&#8249;";
+	prev.innerHTML = '<span class="icon-left"></span>';
 	var next = document.createElement('span');
 	next.classList.add('next');
-	next.innerHTML = "&#8250;";
+	next.innerHTML = '<span class="icon-right"></span>';
 	gallery.appendChild(prev);
 	gallery.appendChild(next);
 
