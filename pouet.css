@@ -1,7 +1,6 @@
 
 #screenshot img.fixed
 {
-	max-width:640px;
 	height:auto;
 }
 
@@ -30,4 +29,46 @@
 	cursor:pointer;
 	display:block;
 	margin-top:5px;
+}
+
+
+.settingspanel
+{
+	position: absolute;
+	top:5px;
+	right:50px;
+	width:400px;
+	height:400px;
+	background: #224488;
+	padding:20px;
+
+}
+
+.settingsbutton
+{
+	position: absolute;
+	top:5px;
+	right:5px;
+	width:40px;
+	height:40px;
+	cursor:pointer;
+	border-radius: 5px;
+	display: block;
+	image-rendering: pixelated;
+
+	background: #224488 url(https://content.pouet.net/avatars/pepper.gif);
+	background-size: 32px;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+
+.pes-button
+{
+	background-color: white;
+	border-radius: 5px;
+	padding:5px;
+	padding-left: 10px;
+	padding-right: 10px;
+	color:#000;
+	margin-right: 10px;
 }

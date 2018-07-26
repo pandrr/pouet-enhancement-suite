@@ -1,5 +1,17 @@
 
-const MAX_SCREENSHOT_WIDTH=640;
+let pesSettings=
+	{
+		max_screenshot_width:640
+	};
+
+loadSettings(function()
+	{
+		initSettings();
+		startDemoZoo();
+
+	});
+
+// const MAX_SCREENSHOT_WIDTH=640;
 
 
 //
@@ -19,6 +31,8 @@ function initScreenShotGallery(data)
 		{
 			el.classList.add('fixed');
 			el.classList.remove('loading');
+
+			el.style="max-width:"+pesSettings.max_screenshot_width+'px';
 
 			if(data.screenshots.length>1)
 				el.classList.add('multiscreenshot');
@@ -76,7 +90,7 @@ function initYoutubeLinks(data)
 				ytLinkEl.dataset.ytid=id;
 				ytLinkEl.onclick=playYoutube;
 				ytLinkEl.appendChild( document.createTextNode('play youtube video') );
-				
+
 				linksEl.appendChild(ytLinkEl);
 			}
 		});
@@ -106,15 +120,128 @@ function getDemoZooData(id)
 }
 
 
+function startDemoZoo()
+{
+	var elDemoZooId=document.querySelector('#demozooID a');
+	if(elDemoZooId)
+	{
+		var parts=elDemoZooId.href.split('/');
+		getDemoZooData(parts[parts.length-2]);
+	}
+	else
+	{
+		console.log('could not find demozoo id');
+	}
 
-var elDemoZooId=document.querySelector('#demozooID a');
-if(elDemoZooId)
-{
-	var parts=elDemoZooId.href.split('/');
-	getDemoZooData(parts[parts.length-2]);
 }
-else
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function closeSettings()
 {
-	console.log('could not find demozoo id');
+	if(document.getElementById("pes-settingspanel"))
+		document.getElementById("pes-settingspanel").remove();
+}
+
+function openSettings()
+{
+	console.log(pesSettings);
+	if(document.getElementById("pes-settingspanel"))
+	{
+		return;
+	}
+
+	var settingsPanel = document.createElement("div");
+	settingsPanel.classList.add('settingspanel');
+	settingsPanel.id="pes-settingspanel";
+	settingsPanel.innerHTML=
+		'max width screenshot <input type="number" id="setting_max_screenshot_width"/>'+
+		'<br/><br/>'+
+		'<input id="pes-savesettingspanel" type="button" class="pes-button" value="save"/>'+
+		'<input id="pes-closesettingspanel" type="button" class="pes-button" value="close"/>'+
+		'<br/><br/>pouet enhancement suite uses <a href="https://demozoo.org/">demozoo.org</a> as source. please support them, they are doing amazing work!';
+
+	document.body.appendChild(settingsPanel);
+	document.getElementById("pes-closesettingspanel").onclick=closeSettings;
+	document.getElementById("pes-savesettingspanel").onclick=saveSettings;
+	document.getElementById("setting_max_screenshot_width").value=pesSettings.max_screenshot_width;
+}
+
+
+
+function initSettings()
+{
+	var settingsButton = document.createElement("div");
+	settingsButton.classList.add('settingsbutton');
+	settingsButton.onclick=openSettings;
+
+	document.body.appendChild(settingsButton);
+}
+
+
+
+function saveSettings()
+{
+	for(var i in pesSettings)
+	{
+		var settingEle=document.getElementById("setting_"+i);
+		console.log(i);
+		if(settingEle)
+		{
+			console.log(settingEle.value);
+			pesSettings[i]=settingEle.value;
+		}
+	}
+
+	console.log(pesSettings);
+
+	chrome.storage.local.set(pesSettings,
+		function(r)
+		{
+			console.log('settings saved',r); 
+		});
+}
+
+function loadSettings(next)
+{
+	var keys=[];
+	for(var i in pesSettings)keys.push(i);
+
+	chrome.storage.local.get(keys, 
+		function(result)
+		{
+			console.log(result);
+
+			if(result.max_screenshot_width)
+			{
+				pesSettings=result;
+				console.log('loaded pesSettings', result);
+			}
+			else
+			{
+				console.log("no valid pesSettings found...");
+			}
+
+			if(next)next();
+
+		});
 }
 

@@ -3,7 +3,7 @@
 	"name": "pouet enhancement suite",
 	"description": "enhances pouet.net",
 	"version": "0.2.1",
-    "permissions": [ "https://demozoo.org/" ],
+    "permissions": [ "https://demozoo.org/","storage" ],
 	"content_scripts": [
 	 {
 	   "matches": ["https://www.pouet.net/*","http://www.pouet.net/*"],
