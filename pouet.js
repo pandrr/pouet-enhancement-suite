@@ -104,8 +104,7 @@ function initYoutubeLinks(data)
 {
 	var linksEl=document.getElementById('links');
 
-	if(data.external_links && linksEl)
-		return;
+	if(!data.external_links || !linksEl) return;
 
 	data.external_links.forEach(function(el)
 	{
