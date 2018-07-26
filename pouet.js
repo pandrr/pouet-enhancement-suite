@@ -1,4 +1,6 @@
 
+const MAX_SCREENSHOT_WIDTH=640;
+
 
 //
 // initialize screenshot gallery and start loading the first image
