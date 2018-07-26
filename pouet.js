@@ -8,7 +8,6 @@ loadSettings(function()
 	{
 		initSettings();
 		startDemoZoo();
-
 	});
 
 // const MAX_SCREENSHOT_WIDTH=640;
@@ -19,35 +18,66 @@ loadSettings(function()
 //
 function initScreenShotGallery(data)
 {
-	if(data.screenshots && data.screenshots.length>0)
+	if(!data.screenshots || !data.screenshots.length)
+		return;
+
+	var el=document.querySelector("#screenshot img");
+	var screenIndex=0;
+	el.classList.add('loading');
+	el.src=data.screenshots[0].original_url;
+	el.onload=function()
 	{
-		var el=document.querySelector("#screenshot img");
-		var screenIndex=0;
-		
-		el.classList.add('loading');
-
-		el.src=data.screenshots[0].original_url;
-		el.onload=function()
-		{
-			el.classList.add('fixed');
-			el.classList.remove('loading');
-
-			el.style="max-width:"+pesSettings.max_screenshot_width+'px';
-
-			if(data.screenshots.length>1)
-				el.classList.add('multiscreenshot');
-		}
-
-		el.onclick=function()
-		{
-			screenIndex=(++screenIndex)%data.screenshots.length;
-			el.classList.add('loading');
-			el.src=data.screenshots[screenIndex].original_url;
-		}
+		el.classList.add('fixed');
+		el.classList.remove('loading');
+		el.style="max-width:"+pesSettings.max_screenshot_width+'px';
 	}
-	else
+
+	if (data.screenshots.length == 1)
+		return;
+
+	var gallery=document.getElementById('screenshot');
+	gallery.classList.add('gallery');
+	var prev = document.createElement('span');
+	prev.classList.add('prev');
+	prev.innerHTML = "&#8249;";
+	var next = document.createElement('span');
+	next.classList.add('next');
+	next.innerHTML = "&#8250;";
+	gallery.appendChild(prev);
+	gallery.appendChild(next);
+
+	var indicator=document.createElement('div');
+	gallery.appendChild(indicator);
+	indicator.append.apply(indicator, data.screenshots.map(function(s)
 	{
-		console.log('no demozoo screenshots');
+		var a = document.createElement('a');
+		a.href = s.original_url;
+		return a;
+	}));
+	indicator.children[0].classList.add('active');
+	indicator.classList.add('indicator');
+
+	prev.onclick=
+	next.onclick=function()
+	{
+		if(this.classList.contains('prev'))
+		{
+
+			if(screenIndex==0)
+				screenIndex=data.screenshots.length-1;
+			else
+				screenIndex--;
+		}
+		else
+			screenIndex=(++screenIndex)%data.screenshots.length;
+
+		Array.prototype.forEach.call(indicator.children,function(i)
+		{
+			i.classList.remove('active');
+		});
+		indicator.children[screenIndex].classList.add('active');
+		el.classList.add('loading');
+		el.src=data.screenshots[screenIndex].original_url;
 	}
 }
 
@@ -75,26 +105,26 @@ function initYoutubeLinks(data)
 	var linksEl=document.getElementById('links');
 
 	if(data.external_links && linksEl)
+		return;
+
+	data.external_links.forEach(function(el)
 	{
-		data.external_links.forEach(function(el)
-		{
-			if(el.link_class=='YoutubeVideo')
-			{
-				var urlParts=el.url.split('/');
-				urlParts=urlParts[urlParts.length-1];
-				urlParts=urlParts.split('=');
-				var id=urlParts[urlParts.length-1];
+		if(el.link_class!='YoutubeVideo')
+			return;
 
-				var ytLinkEl = document.createElement("a");
-				ytLinkEl.classList.add('playyoutubelink');
-				ytLinkEl.dataset.ytid=id;
-				ytLinkEl.onclick=playYoutube;
-				ytLinkEl.appendChild( document.createTextNode('play youtube video') );
+		var urlParts=el.url.split('/');
+		urlParts=urlParts[urlParts.length-1];
+		urlParts=urlParts.split('=');
+		var id=urlParts[urlParts.length-1];
 
-				linksEl.appendChild(ytLinkEl);
-			}
-		});
-	}
+		var ytLinkEl=document.createElement("a");
+		ytLinkEl.classList.add('playyoutubelink');
+		ytLinkEl.dataset.ytid=id;
+		ytLinkEl.onclick=playYoutube;
+		ytLinkEl.appendChild( document.createTextNode('play youtube video') );
+
+		linksEl.appendChild(ytLinkEl);
+	});
 }
 
 
@@ -105,18 +135,16 @@ function getDemoZooData(id)
 {
 	fetch('https://demozoo.org/api/v1/productions/'+id)
 		.then(function(response) { return response.json(); })
-	    .then(function(data)
-	    {
-	    	// console.log(data);
-			if(data)
-			{
-				initScreenShotGallery(data);
-				initYoutubeLinks(data);
-			}
+		.then(function(data)
+		{
+			if(!data)
+				return;
+			initScreenShotGallery(data);
+			initYoutubeLinks(data);
 		})
 		.catch(function(e) {
-       		console.log("fetch error",e);
-    	});
+			console.log("fetch error",e);
+		});
 }
 
 
@@ -134,11 +162,6 @@ function startDemoZoo()
 	}
 
 }
-
-
-
-
-
 
 
 
