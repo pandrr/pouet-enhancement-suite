@@ -1,4 +1,56 @@
 
+#screenshot.gallery {
+	position: relative;
+}
+#screenshot.gallery:hover .prev,
+#screenshot.gallery:hover .next,
+#screenshot.gallery:hover .indicator {
+	opacity: 1;
+}
+#screenshot.gallery .prev,
+#screenshot.gallery .next {
+	display: block;
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	font-size: 5em;
+	padding: 10px;
+	color: #fff;
+	z-index: 100;
+	cursor: pointer;
+	background: rgba(0,0,0,.5);
+	opacity: 0;
+	transition: 200ms linear opacity;
+}
+#screenshot.gallery .next {
+	right: 0;
+}
+#screenshot.gallery .prev {
+	left: 0;
+}
+#screenshot.gallery .indicator {
+	position: absolute;
+	bottom: 0;
+	left: 50%;
+	transform: translateX(-50%);
+	background: rgba(0,0,0,.5);
+	padding: .5em;
+	padding-bottom: 0;
+	opacity: 0;
+}
+#screenshot.gallery .indicator a {
+	background: #666;
+    border-radius: 100%;
+    width: 5px;
+    height: 5px;
+    margin: .2em;
+    display: inline-block;
+}
+#screenshot.gallery .indicator a.active {
+	background: #ccc;
+}
+
+
 #screenshot img.fixed
 {
 	max-width:640px;
