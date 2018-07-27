@@ -86,8 +86,16 @@
 .playyoutubelink
 {
 	cursor:pointer;
-	display:block;
-	margin-top:5px;
+	display:inline-block;
+	margin:.5em;
+	background: #F00;
+	color: #FFF;
+	white-space: nowrap;
+	font-weight: 600;
+	padding: 0.4em;
+	border-radius: .2em;
+	text-decoration: none!important;
+	margin-right: 0;
 }
 
 

@@ -117,7 +117,10 @@ function initYoutubeLinks(data)
 		ytLinkEl.classList.add('playyoutubelink');
 		ytLinkEl.dataset.ytid=id;
 		ytLinkEl.onclick=playYoutube;
-		ytLinkEl.appendChild( document.createTextNode('play youtube video') );
+		var ytPlayButton=document.createElement("span");
+		ytPlayButton.classList.add('icon-youtube-play');
+		ytLinkEl.appendChild(ytPlayButton);
+		ytLinkEl.appendChild( document.createTextNode('YouTube') );
 
 		linksEl.appendChild(ytLinkEl);
 	});
