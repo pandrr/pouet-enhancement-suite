@@ -7,7 +7,7 @@ enhances pouet
 
 
 
-![demo](https://drastic.net/files/temp/PES.gif "demo")
+![demo](https://drastic.net/files/temp/PES.gif)
 
 
 ## install extension:
