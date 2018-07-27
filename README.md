@@ -5,6 +5,11 @@ enhances pouet
 - pixelate platform and type icons
 - embedded youtube player
 
+
+
+![demo](https://drastic.net/files/temp/PES.gif "demo")
+
+
 ## install extension:
 
 firefox:
