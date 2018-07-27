@@ -1,14 +1,17 @@
 
-#screenshot.gallery {
+#screenshot.gallery
+{
 	position: relative;
 }
 #screenshot.gallery:hover .prev,
 #screenshot.gallery:hover .next,
-#screenshot.gallery:hover .indicator {
+#screenshot.gallery:hover .indicator
+{
 	opacity: 1;
 }
 #screenshot.gallery .prev,
-#screenshot.gallery .next {
+#screenshot.gallery .next
+{
 	display: block;
 	position: absolute;
 	top: 50%;
@@ -22,13 +25,16 @@
 	opacity: 0;
 	transition: 200ms linear opacity;
 }
-#screenshot.gallery .next {
+#screenshot.gallery .next
+{
 	right: 0;
 }
-#screenshot.gallery .prev {
+#screenshot.gallery .prev
+{
 	left: 0;
 }
-#screenshot.gallery .indicator {
+#screenshot.gallery .indicator
+{
 	position: absolute;
 	bottom: 0;
 	width: 100%;
@@ -36,7 +42,8 @@
 	padding-bottom: 0;
 	opacity: 0;
 }
-#screenshot.gallery .indicator a {
+#screenshot.gallery .indicator a
+{
 	background: #666;
 	border-radius: 100%;
 	width: 5px;
@@ -45,7 +52,8 @@
 	display: inline-block;
 	pointer-events: none;
 }
-#screenshot.gallery .indicator a.active {
+#screenshot.gallery .indicator a.active
+{
 	background: #9FCFFF;
 }
 
